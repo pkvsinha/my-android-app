@@ -44,6 +44,7 @@ android {
 dependencies {
 
     implementation(project(":core:ui"))
+    implementation(project(":core:model"))
     implementation(project(":feature:profile"))
 //    implementation(project(":feature:blog"))
 
