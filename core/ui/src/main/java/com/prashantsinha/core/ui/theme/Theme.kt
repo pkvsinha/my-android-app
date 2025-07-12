@@ -1,4 +1,4 @@
-package com.prashantsinha.ui.theme
+package com.prashantsinha.core.ui.theme
 
 import android.app.Activity
 import android.os.Build

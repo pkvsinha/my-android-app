@@ -21,3 +21,8 @@ dependencyResolutionManagement {
 
 rootProject.name = "MyApp"
 include(":app")
+include(":feature:profile")
+include(":wear")
+include(":tv")
+include(":feature:blog")
+include(":core:ui")
