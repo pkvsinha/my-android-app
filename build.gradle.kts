@@ -8,5 +8,11 @@ plugins {
     alias(libs.plugins.hilt.android) apply false
     alias(libs.plugins.ksp) apply false
     alias(libs.plugins.google.android.libraries.mapsplatform.secrets.gradle.plugin) apply false
+}
 
+buildscript {
+
+    dependencies {
+        classpath(libs.hilt.android.gradle.plugin)
+    }
 }

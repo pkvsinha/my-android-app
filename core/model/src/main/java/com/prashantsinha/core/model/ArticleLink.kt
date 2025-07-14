@@ -8,6 +8,5 @@ data class ArticleLink(
     val title: String,
     val description: String,
     val url: String,
-    val audioBook: String,
     val publishedAt: String,
 )
