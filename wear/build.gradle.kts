@@ -2,6 +2,8 @@ plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.android)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt.android)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -59,6 +61,10 @@ dependencies {
     implementation(libs.horologist.compose.tools)
     implementation(libs.horologist.tiles)
     implementation(libs.androidx.watchface.complications.data.source.ktx)
+
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+
     androidTestImplementation(platform(libs.androidx.compose.bom))
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
