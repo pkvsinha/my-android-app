@@ -29,7 +29,9 @@ import com.prashantsinha.blog.ArticlesScreen
 import com.prashantsinha.core.model.Profile
 import com.prashantsinha.core.ui.theme.MyAppTheme
 import com.prashantsinha.feature.profile.ProfileScreen
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

@@ -20,14 +20,16 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.lifecycle.viewmodel.compose.viewModel
 import com.prashantsinha.core.model.ArticleLink
 import com.prashantsinha.core.model.Profile
 import com.prashantsinha.core.ui.theme.MyAppTheme
+import dagger.hilt.android.AndroidEntryPoint
 
 @Composable
 fun ArticlesScreen(
-    articlesModel: ArticlesViewModel = viewModel(),
+    articlesModel: ArticlesViewModel = hiltViewModel<ArticlesViewModel>(),
     onPostClick: (String) -> Unit
 ) {
     val articlesState = articlesModel.articles.collectAsState()
@@ -65,7 +67,7 @@ fun ArticleCard(article: ArticleLink, onClick: () -> Unit) {
 fun ArticlesScreenPreview() {
     // We create a dummy profile object for the preview
     val samplePost = ArticleLink(1, "Sample Title", "This is a short description...", "url", "Jan 1, 2025", )
-//    MyAppTheme {
-//        ArticleCard(article = samplePost, onClick = {})
-//    }
+    MyAppTheme {
+        ArticleCard(article = samplePost, onClick = {})
+    }
 }
