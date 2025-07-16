@@ -1,4 +1,4 @@
-package com.prashantsinha
+package com.prashantsinha.features.ai
 
 /**
  * A sealed hierarchy describing the state of the text generation.

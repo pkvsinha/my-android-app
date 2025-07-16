@@ -13,6 +13,7 @@ import androidx.navigation.compose.composable
 import com.prashantsinha.blog.ArticlesScreen
 import com.prashantsinha.core.model.Profile
 import com.prashantsinha.feature.profile.ProfileScreen
+import com.prashantsinha.features.ai.AiHomeScreen
 import com.prashantsinha.home.HomeScreen
 import com.prashantsinha.projects.ProjectsScreen
 
@@ -24,6 +25,9 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         }
         composable(BottomNavItem.Projects.route) {
             ProjectsScreen()
+        }
+        composable(BottomNavItem.Ai.route) {
+            AiHomeScreen()
         }
         composable(BottomNavItem.Articles.route) {
             val context = LocalContext.current

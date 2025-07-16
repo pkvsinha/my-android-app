@@ -4,6 +4,7 @@ import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.AccountBox
 import androidx.compose.material.icons.filled.Build
 import androidx.compose.material.icons.filled.Email
+import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.Home
 import androidx.compose.ui.graphics.vector.ImageVector
 import kotlinx.serialization.Serializable
@@ -17,4 +18,6 @@ sealed class BottomNavItem(val route: String, val icon: ImageVector, val label: 
     object Articles : BottomNavItem("articles", Icons.Default.Email, "Articles")
 
     object Resume : BottomNavItem("resume", Icons.Default.AccountBox, "Resume")
+
+    object Ai: BottomNavItem("ai", Icons.Default.Face, "AI")
 }

@@ -1,4 +1,4 @@
-package com.prashantsinha
+package com.prashantsinha.features.ai
 
 import android.graphics.BitmapFactory
 import androidx.compose.foundation.BorderStroke
@@ -53,8 +53,8 @@ val imageDescriptions = arrayOf(
 )
 
 @Composable
-fun BakingScreen(
-    bakingViewModel: BakingViewModel = viewModel()
+fun AiHomeScreen(
+    bakingViewModel: AiHomeViewModel = viewModel()
 ) {
     val selectedImage = remember { mutableIntStateOf(0) }
     val placeholderPrompt = stringResource(R.string.prompt_placeholder)
@@ -152,6 +152,6 @@ fun BakingScreen(
 
 @Preview(showSystemUi = true)
 @Composable
-fun BakingScreenPreview() {
-    BakingScreen()
+fun AiHomeScreenPreview() {
+    AiHomeScreen()
 }

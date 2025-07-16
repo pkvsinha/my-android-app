@@ -21,6 +21,7 @@ fun MainScreen() {
     val items = listOf<BottomNavItem>(
         BottomNavItem.Home,
         BottomNavItem.Projects,
+        BottomNavItem.Ai,
         BottomNavItem.Articles,
         BottomNavItem.Resume
     )
