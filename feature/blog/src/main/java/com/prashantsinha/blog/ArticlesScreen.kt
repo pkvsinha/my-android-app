@@ -15,6 +15,7 @@ import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
 import androidx.compose.runtime.collectAsState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.font.FontWeight
@@ -32,13 +33,13 @@ fun ArticlesScreen(
     articlesModel: ArticlesViewModel = hiltViewModel<ArticlesViewModel>(),
     onPostClick: (String) -> Unit
 ) {
-    val articlesState = articlesModel.articles.collectAsState()
+    val articlesState by articlesModel.articles.collectAsState()
 
     LazyColumn(
         contentPadding = PaddingValues(16.dp),
         verticalArrangement = Arrangement.spacedBy(16.dp)
     ) {
-        items(articlesState.value) { article ->
+        items(articlesState) { article ->
             ArticleCard(article = article, onClick = { onPostClick(article.url) })
         }
     }

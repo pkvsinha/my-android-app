@@ -10,6 +10,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Face
 import androidx.compose.material.icons.filled.List
+import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.Icon
 import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.NavigationBar
@@ -32,59 +33,13 @@ import com.prashantsinha.feature.profile.ProfileScreen
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
+@OptIn(ExperimentalMaterial3Api::class)
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             MyAppTheme {
-                // navigation setup
-                val navController = rememberNavController()
-                val navs = listOf("profile" to Icons.Default.Face, "blog" to Icons.Default.List)
-
-                Scaffold(
-                    bottomBar = {
-                        NavigationBar {
-                            val navBackStack = navController.currentBackStackEntryAsState().value
-                            val currentDestination = navBackStack?.destination
-                            navs.forEach { (screen, icon) ->
-                                NavigationBarItem(
-                                    icon = { Icon(icon, contentDescription = null) },
-                                    label = { Text(screen.replaceFirstChar { it.uppercase() }) },
-                                    selected = currentDestination?.hierarchy?.any { it.route == screen } == true,
-                                    onClick = {
-                                        navController.navigate(screen) {
-                                            popUpTo(navController.graph.findStartDestination().id) { saveState = true }
-                                            launchSingleTop = true
-                                            restoreState = true
-                                        }
-                                    }
-                                )
-                            }
-                        }
-                    }
-
-                ) { innerPadding ->
-                    NavHost(navController, startDestination = "profile", Modifier.padding(innerPadding)) {
-                        composable("profile") {
-                            val myProfile = Profile(
-                                name = "Prashant Sinha",
-                                title = "Android Developer | Tech Enthusiast",
-                                bio = "Welcome to my portfolio! I build beautiful and functional Android apps with Kotlin and Jetpack Compose.",
-                                // Replace with a real image URL!
-                                profileImageUrl = "https://avatars.githubusercontent.com/u/1024025?v=4", // Example: Google's GitHub avatar
-                                skills = listOf("Kotlin", "Jetpack Compose", "Modular Architecture", "Android", "Git", "Coroutines")
-                            )
-                            ProfileScreen(profile = myProfile)
-                        }
-                        composable("blog") {
-                            val context = LocalContext.current
-                            ArticlesScreen( onPostClick =  {
-                                val intent = Intent(Intent.ACTION_VIEW, Uri.parse("https://www.google.com"))
-                                context.startActivity(intent)
-                            } )
-                        }
-                    }
-                }
+                MainScreen()
             }
         }
     }
