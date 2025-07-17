@@ -17,8 +17,11 @@
             <option value="$PROJECT_DIR$/core/ui" />
             <option value="$PROJECT_DIR$/data" />
             <option value="$PROJECT_DIR$/feature" />
+            <option value="$PROJECT_DIR$/feature/ai" />
             <option value="$PROJECT_DIR$/feature/blog" />
+            <option value="$PROJECT_DIR$/feature/home" />
             <option value="$PROJECT_DIR$/feature/profile" />
+            <option value="$PROJECT_DIR$/feature/projects" />
             <option value="$PROJECT_DIR$/tv" />
             <option value="$PROJECT_DIR$/wear" />
           </set>

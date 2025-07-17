@@ -6,16 +6,21 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.unit.dp
 import androidx.navigation.NavController
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.prashantsinha.blog.ArticlesScreen
 import com.prashantsinha.core.model.Profile
+import com.prashantsinha.core.ui.compose.WebViewScreen
 import com.prashantsinha.feature.profile.ProfileScreen
 import com.prashantsinha.features.ai.AiHomeScreen
 import com.prashantsinha.home.HomeScreen
 import com.prashantsinha.projects.ProjectsScreen
+import java.net.URLDecoder
+import java.net.URLEncoder
+import java.nio.charset.StandardCharsets
 
 @Composable
 fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifier) {
@@ -32,9 +37,14 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         composable(BottomNavItem.Articles.route) {
             val context = LocalContext.current
             ArticlesScreen (onPostClick = { url ->
-                val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
-                context.startActivity(intent)
+                val urlToOpen = URLEncoder.encode("https://prashantsinha.in", StandardCharsets.UTF_8.toString())
+                navController.navigate("web_view_screen/$urlToOpen")
             })
+        }
+        composable("web_view_screen/{url}") { entry ->
+            val url = entry.arguments?.getString("url") ?: "https://prashantsinha.in"
+            val decodedUrl = URLDecoder.decode(url, StandardCharsets.UTF_8.toString())
+            WebViewScreen(url = decodedUrl, modifier = Modifier.padding())
         }
         composable(BottomNavItem.Resume.route) {
             // You can get your profile data from a ViewModel later

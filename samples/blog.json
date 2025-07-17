@@ -1,0 +1,25 @@
+{
+    "meta": {   
+        "title": "Sample Blog",
+        "description": "A sample blog post for demonstration purposes.",
+        "author": "John Doe",
+        "date": "2023-10-01"
+    },
+    "content": {
+        "list": [
+            {
+                "type": "text",
+                "text": "Welcome to my blog! This is a sample post to demonstrate the structure of a blog JSON file."
+            },
+            {
+                "type": "image",
+                "src": "https://example.com/image.jpg",
+                "alt": "Sample Image"
+            },
+            {
+                "type": "text",
+                "text": "In this post, I will share some insights and thoughts on various topics."
+            }
+        ]
+    }
+}
