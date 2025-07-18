@@ -7,11 +7,16 @@ import androidx.compose.material3.NavigationBarItem
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.saveable.rememberSaveable
 import androidx.compose.ui.Modifier
 import androidx.navigation.NavDestination.Companion.hierarchy
 import androidx.navigation.NavGraph.Companion.findStartDestination
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.currentBackStackEntryAsState
 import androidx.navigation.compose.rememberNavController
+import com.prashantsinha.navigation.AppBottomNavigation
 import com.prashantsinha.navigation.AppNavigation
 import com.prashantsinha.navigation.BottomNavItem
 
@@ -25,26 +30,18 @@ fun MainScreen() {
         BottomNavItem.Articles,
         BottomNavItem.Resume
     )
+    val bottomNavVisibility = rememberSaveable { (mutableStateOf(true)) }
+    val navBackStackEntry  by navController.currentBackStackEntryAsState()
+
+    bottomNavVisibility.value = when (navBackStackEntry?.destination?.route) {
+        "web_view_screen/{url}" -> false
+        else -> true
+    }
 
     Scaffold (
         bottomBar = {
-            NavigationBar {
-                val navBackStack = navController.currentBackStackEntryAsState().value
-                val currentDestination = navBackStack?.destination
-                items.forEach { screen ->
-                    NavigationBarItem(
-                        icon = { Icon(screen.icon, contentDescription = screen.label) },
-                        label = { Text(screen.label) },
-                        selected = currentDestination?.hierarchy?.any { it.route == screen.route } == true,
-                        onClick = {
-                            navController.navigate(screen.route) {
-                                popUpTo(navController.graph.findStartDestination().id) { saveState = true }
-                                launchSingleTop = true
-                                restoreState = true
-                            }
-                        }
-                    )
-                }
+            if (bottomNavVisibility.value) {
+                AppBottomNavigation(navController, items)
             }
         }
     ) { innerPadding ->
