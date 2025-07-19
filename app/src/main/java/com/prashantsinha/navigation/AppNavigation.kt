@@ -13,6 +13,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import com.prashantsinha.blog.ArticlesScreen
 import com.prashantsinha.core.model.Profile
+import com.prashantsinha.core.ui.android.WebViewActivity
 import com.prashantsinha.core.ui.compose.WebViewScreen
 import com.prashantsinha.feature.profile.ProfileScreen
 import com.prashantsinha.features.ai.AiHomeScreen
@@ -37,8 +38,12 @@ fun AppNavigation(navController: NavHostController, modifier: Modifier = Modifie
         composable(BottomNavItem.Articles.route) {
             val context = LocalContext.current
             ArticlesScreen (onPostClick = { url ->
-                val urlToOpen = URLEncoder.encode("https://prashantsinha.in", StandardCharsets.UTF_8.toString())
-                navController.navigate("web_view_screen/$urlToOpen")
+                val encodedUrl = URLEncoder.encode(url, StandardCharsets.UTF_8.toString())
+                val intent = Intent(context, WebViewActivity::class.java).apply {
+                    putExtra("url", encodedUrl)
+                }
+                context.startActivity(intent)
+                // navController.navigate("web_view_screen/$urlToOpen")
             })
         }
         composable("web_view_screen/{url}") { entry ->
